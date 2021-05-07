@@ -11,6 +11,8 @@ const RestCountriesContextProvider = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredRegion, setFilteredRegion] = useState("");
   const [theme, setTheme] = useState("light");
+  const [countryError, setCountryError] = useState(false);
+  const [countriesError, setCountriesError] = useState(false);
 
   useEffect(() => {
     getCountries(endpoint);
@@ -49,20 +51,35 @@ const RestCountriesContextProvider = (props) => {
     setLoading(true);
     try {
       const response = await fetch(endpoint);
+
+      if (!response.ok) {
+        throw Error("Could not fetch data for that resource");
+      }
+
       const data = await response.json();
       setCountries([...data]);
+      setCountriesError(false);
     } catch (error) {
       console.error(error);
+      // console.log(error);
+      setCountriesError(true);
     }
     setLoading(false);
   };
 
   const getCountry = async (endpoint) => {
     let endpointCodes = "https://restcountries.eu/rest/v2/alpha?codes=";
+
     setLoading(true);
     try {
       const response = await fetch(endpoint);
+
+      if (!response.ok) {
+        throw Error("Could not fetch data for that resource");
+      }
+
       const data = await response.json();
+
       setCountry(data);
       if (data.borders.length > 0) {
         data.borders.forEach((border) => {
@@ -83,9 +100,12 @@ const RestCountriesContextProvider = (props) => {
           return countryArr;
         });
         setCountryBorders(countryArr);
+        setCountryError(false);
       }
     } catch (error) {
       console.error(error);
+      // console.log(error);
+      setCountryError(true);
     }
     setLoading(false);
   };
@@ -107,6 +127,8 @@ const RestCountriesContextProvider = (props) => {
         applyTheme,
         theme,
         changeTheme,
+        countryError,
+        countriesError,
       }}
     >
       {props.children}
