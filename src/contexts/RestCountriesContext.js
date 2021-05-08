@@ -13,6 +13,8 @@ const RestCountriesContextProvider = (props) => {
   const [theme, setTheme] = useState("light");
   const [countryError, setCountryError] = useState(false);
   const [countriesError, setCountriesError] = useState(false);
+  const [errorCountryValue, setErrorCountryValue] = useState("");
+  const [errorCountriesValue, setErrorCountriesValue] = useState("");
 
   useEffect(() => {
     getCountries(endpoint);
@@ -59,10 +61,12 @@ const RestCountriesContextProvider = (props) => {
       const data = await response.json();
       setCountries([...data]);
       setCountriesError(false);
+      setErrorCountriesValue("");
     } catch (error) {
       console.error(error);
       // console.log(error);
       setCountriesError(true);
+      setErrorCountriesValue(error.message);
     }
     setLoading(false);
   };
@@ -101,11 +105,13 @@ const RestCountriesContextProvider = (props) => {
         });
         setCountryBorders(countryArr);
         setCountryError(false);
+        setErrorCountryValue("");
       }
     } catch (error) {
       console.error(error);
       // console.log(error);
       setCountryError(true);
+      setErrorCountryValue(error.message);
     }
     setLoading(false);
   };
@@ -129,6 +135,8 @@ const RestCountriesContextProvider = (props) => {
         changeTheme,
         countryError,
         countriesError,
+        errorCountriesValue,
+        errorCountryValue,
       }}
     >
       {props.children}
