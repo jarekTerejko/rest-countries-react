@@ -7,7 +7,7 @@ const CountryCard = (country) => {
   };
   return (
     <Link
-      to={{ pathname: `/country/${country.country.alpha3Code}` }}
+      to={{ pathname: `/country/${country.country.alpha3Code.toLowerCase()}` }}
     >
       <div className="country">
         <img

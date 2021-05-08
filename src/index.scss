@@ -203,6 +203,7 @@ code {
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     column-gap: 60px;
     row-gap: 60px;
+    margin-bottom: 6rem;
 
     @include mq(1280px) {
       grid-template-columns: repeat(auto-fill, minmax(260px, 270px));
@@ -220,6 +221,7 @@ code {
   background: var(--White);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   color: var(--Very-Dark-Blue);
+  height: 100%;
 
   &__flag {
     height: 16rem;
