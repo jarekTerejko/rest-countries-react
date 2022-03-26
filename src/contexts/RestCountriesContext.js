@@ -3,7 +3,7 @@ import React, { useState, createContext, useEffect } from "react";
 export const RestCountriesContext = createContext();
 
 const RestCountriesContextProvider = (props) => {
-  const endpoint = "https://restcountries.eu/rest/v2/all";
+  const endpoint = "https://restcountries.com/v2/all";
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -72,7 +72,7 @@ const RestCountriesContextProvider = (props) => {
   };
 
   const getCountry = async (endpoint) => {
-    let endpointCodes = "https://restcountries.eu/rest/v2/alpha?codes=";
+    let endpointCodes = "https://restcountries.com/v2/alpha?codes=";
 
     setLoading(true);
     try {
