@@ -14,7 +14,7 @@ const CountryPage = (props) => {
 
   useEffect(() => {
     const countryCode = location.pathname.slice(-3);
-    getCountry(`https://restcountries.eu/rest/v2/alpha/${countryCode}`);
+    getCountry(`https://restcountries.com/v2/alpha/${countryCode}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
