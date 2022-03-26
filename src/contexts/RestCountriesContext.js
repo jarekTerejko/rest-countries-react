@@ -87,7 +87,7 @@ const RestCountriesContextProvider = (props) => {
       setCountry(data);
       if (data.borders.length > 0) {
         data.borders.forEach((border) => {
-          endpointCodes += `${border};`;
+          endpointCodes += `${border},`;
         });
         const resCodes = await fetch(endpointCodes);
         const dataCodes = await resCodes.json();
